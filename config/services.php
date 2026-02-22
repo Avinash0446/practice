@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'twilio' => [
+        'twilio_token'  => env('TWILIO_AUTH_TOKEN'),
+        'twilio_sid'    => env('TWILIO_ACCOUNT_SID'),
+        'twilio_service'=> env('TWILIO_VERIFY_SERVICE_SID')
+    ]
 
 ];
