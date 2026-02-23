@@ -17,7 +17,8 @@ class AdminUserSeeder extends Seeder
             'email' => 'admin@yopmail.com'
         ], [
             'name' => 'Admin User',
-            'password' => bcrypt(value: 'password')
+            'password' => bcrypt(value: 'password'),
+            'status' => 'active'
         ]);
         $admin->assignRole('admin');
     }
