@@ -4,8 +4,7 @@ namespace App\Providers;
 
 use App\Events\UserRegistered;
 use App\Listeners\SendWelcomeEmail;
-use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Mailer\Messenger\SendEmailMessage;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
