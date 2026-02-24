@@ -2,16 +2,17 @@
 
 namespace App\Providers;
 
-use App\Events\UserRegistered;
-use App\Listeners\SendWelcomeEmail;
+use App\Events\{UserRegistered,LoginEvent};
+use App\Listeners\{SendLoginSms, SendWelcomeEmail};
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        UserRegistered::class => [
-            SendWelcomeEmail::class,
-        ]
+        UserRegistered::class => [SendWelcomeEmail::class],
+         LoginEvent::class => [
+            SendLoginSms::class
+        ],
     ];
     public function register(): void
     {
@@ -22,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
      * Bootstrap services.
      */
     public function boot(): void
-    {
-        //
+    { 
+        parent::boot(); 
     }
 }

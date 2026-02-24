@@ -9,7 +9,15 @@
 </head>
 
 <body class="bg-light">
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container vh-100 d-flex align-items-center justify-content-center">
         <div class="card shadow-lg border-0 rounded-3" style="max-width: 420px; width: 100%;">
             <div class="card-body p-4 p-md-5">

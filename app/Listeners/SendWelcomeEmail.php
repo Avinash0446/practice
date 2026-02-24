@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserRegistered;
 use App\Mail\WelcomeMail;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,7 +17,10 @@ class SendWelcomeEmail
     {
         // For debugging (use log, not dd)
         Log::info('SendWelcomeEmail triggered for: ' . $event->user->email);
-
-        Mail::to($event->user->email)->send(new WelcomeMail($event->user));
+        try{
+            Mail::to($event->user->email)->send(new WelcomeMail($event->user));
+        }catch(Exception $e){
+            Log::info("this is the exception",['exception' => $e->getMessage()]);
+        }
     }
 }

@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div id="flash-message" class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="card shadow-sm p-4">
             <h2 class="mb-4">Login</h2>
             <form action="{{ route('login.attempt') }}" method="POST">

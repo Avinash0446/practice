@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoginEvent;
 use App\Events\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,18 +18,19 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'password' => bcrypt($data['password'])
+                'password' => bcrypt($data['password']),
+                'status' => 'active'
             ]);
             $user->assignRole($data['role']);
             DB::commit();
             event(new UserRegistered($user));
             if ($user->hasRole('user')) {
                 auth()->login($user);
-                return redirect()->route('user.dashboard', compact('user'));
+                return redirect()->route('user.dashboard', compact('user'))->with('success', 'Registration completed successfully!');;
             }
             if ($user->hasRole('editor')) {
                 auth()->login($user);
-                return redirect()->route('editor.dashboard', compact('user'));
+                return redirect()->route('editor.dashboard', compact('user'))->with('success', 'Registration completed successfully!');;
             }
         } catch (\Exception $e) {
             DB::rollBack();
@@ -69,8 +71,9 @@ class AuthController extends Controller
                     'email' => 'Your account is inactive. Please contact support.'
                 ]);
             }
-
+            // $user = User::where('email',$request->email)->first();
             $request->session()->regenerate();
+            event(new LoginEvent(auth()->user()));
             if (auth()->user()->hasRole('admin')) {
                 return redirect()->route('admin.dashboard');
             } elseif (auth()->user()->hasRole('editor')) {
