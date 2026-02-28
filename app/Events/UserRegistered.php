@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
-class UserRegistered
+class UserRegistered 
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -18,6 +19,9 @@ class UserRegistered
     public function __construct($user)
     {
         $this->user = $user;
+           Log::info('✅ Event Fired: UserRegistered', [
+            'email' => $user->email
+        ]);
     }
 
     /**
