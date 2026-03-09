@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\testController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 Route::middleware(['auth', 'role:editor'])->group(function () {
     Route::get('/editor/dashboard', [EditorController::class, 'editorDashboard'])->name('editor.dashboard');
 });
+
+Route::resource('test', testController::class);
