@@ -21,4 +21,7 @@
     <a href="{{ route('profile') }}" class="btn btn-primary mt-3">
         View Profile
     </a>
+    <a href="{{ route('editor.create-post-form') }}" class="btn btn-primary mt-3">
+        Create Post
+    </a>
 @endsection

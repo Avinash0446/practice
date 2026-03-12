@@ -33,6 +33,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 Route::middleware(['auth', 'role:editor'])->group(function () {
     Route::get('/editor/dashboard', [EditorController::class, 'editorDashboard'])->name('editor.dashboard');
+    Route::get('editor/create-post-form',[EditorController::class, 'createPostForm'])->name('editor.create-post-form');
+    Route::post('editor/create-post',[EditorController::class, 'createPost'])->name('editor.create-post');   
 });
 
 Route::resource('test', testController::class);
