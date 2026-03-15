@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
     <!-- footer section -->
     <footer class="footer_section">
         <div class="container">
@@ -82,4 +81,3 @@
         </div>
     </footer>
     <!-- footer section -->
-@endsection
