@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('home');
-})->name('home');
-
+    return view('layouts.app');
+})->name('app');
+Route::get('/registration-page',[AuthController::class, 'fetchRegisterPage'])->name('load.register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login/attempt', [AuthController::class, 'loginAttempt'])->name('login.attempt')->middleware('check_user');

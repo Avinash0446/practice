@@ -34,9 +34,11 @@
                             </li>
                         </ul>
                         <div class="user_option">
-                            <a class="user_link" href="">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </a>
+                             <i class="fa fa-user user_link" aria-hidden="true"></i>
+                                <div class = "authContainer" style="display: none">
+                                        <div class = "login_option"><a href="{{ route('login') }}" >Login</a></div>
+                                        <div class = "register_option"><a href="{{ route('load.register') }}" >Register</a></div>
+                                </div>
                             <a class="cart_link" href="#">
                                 <svg id="Capa_1" style="enable-background:new 0 0 456.029 456.029;" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

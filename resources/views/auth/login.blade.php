@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('auth.layout')
+@section('auth-content')
     <div class="container mt-5">
         @if ($errors->any())
             <div id="flash-message" class="alert alert-danger">
@@ -25,7 +25,7 @@
                 <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
             </form>
             <div class="text-center text-muted my-3">Don't have an account?</div>
-            <a class="btn btn-outline-secondary w-100 py-2" href="{{ route('home') }}">Register</a>
+            <a class="btn btn-outline-secondary w-100 py-2" href="{{ route('load.register') }}">Register</a>
         </div>
     </div>
 @endsection

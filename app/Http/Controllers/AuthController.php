@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+    public function fetchRegisterPage()
+    {
+        return view('auth.register');
+    }
     public function register(Request $request)
     {
         $data = $request->all();
@@ -26,11 +30,13 @@ class AuthController extends Controller
             event(new UserRegistered($user));
             if ($user->hasRole('user')) {
                 auth()->login($user);
-                return redirect()->route('user.dashboard', compact('user'))->with('success', 'Registration completed successfully!');;
+                return redirect()->route('user.dashboard', compact('user'))->with('success', 'Registration completed successfully!');
+                ;
             }
             if ($user->hasRole('editor')) {
                 auth()->login($user);
-                return redirect()->route('editor.dashboard', compact('user'))->with('success', 'Registration completed successfully!');;
+                return redirect()->route('editor.dashboard', compact('user'))->with('success', 'Registration completed successfully!');
+                ;
             }
         } catch (\Exception $e) {
             DB::rollBack();
@@ -39,12 +45,12 @@ class AuthController extends Controller
             ]);
         }
     }
-    
+
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('home');
+        return redirect()->route('load.register');
     }
 
     public function profile()
@@ -55,8 +61,9 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view('login');
+        return view('auth.login');
     }
+
 
     public function loginAttempt(Request $request)
     {
