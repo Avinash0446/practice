@@ -1,201 +1,250 @@
-    <div class="hero_area">
-        <div class="bg-box">
-            <img src="{{ asset('images/hero-bg.jpg') }}" alt="">
-        </div>
-        <!-- header section strats -->
-        <header class="header_section">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="index.html">
-                        <span>
-                            Feane
-                        </span>
-                    </a>
+<div class="hero_area">
+    <div class="bg-box">
+        <img src="{{ asset('images/hero-bg.jpg') }}" alt="">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <span>
+                        Feane
+                    </span>
+                </a>
 
-                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class=""> </span>
-                    </button>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav  mx-auto ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="menu.html">Menu</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="book.html">Book Table</a>
-                            </li>
-                        </ul>
-                        <div class="user_option">
-                             <i class="fa fa-user user_link" aria-hidden="true"></i>
-                                <div class = "authContainer" style="display: none">
-                                        <div class = "login_option"><a href="{{ route('login') }}" >Login</a></div>
-                                        <div class = "register_option"><a href="{{ route('load.register') }}" >Register</a></div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="book.html">Book Table</a>
+                        </li>
+                    </ul>
+                    <div class="user_option">
+                        <i class="fa fa-user user_link" aria-hidden="true"></i>
+                        <div class="authContainer" style="display: none">
+                            <ul class="profile-options">
+                                <div class="auth-option" style="display: {{ auth()->check() ? 'none' : 'block' }}">
+                                    <li>
+                                        <a href="{{ route('login') }}">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('load.register') }}">Register</a>
+                                    </li>
                                 </div>
-                            <a class="cart_link" href="#">
-                                <svg id="Capa_1" style="enable-background:new 0 0 456.029 456.029;" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    x="0px" y="0px" viewBox="0 0 456.029 456.029" xml:space="preserve">
+                                <div class="logout" style="display: {{ auth()->check() ? 'block' : 'none' }}">
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <div class="logout-section">
+                                                <button class="btn btn-danger" type="submit">
+                                                    Logout
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <a class="cart_link" href="#">
+                            <svg id="Capa_1" style="enable-background:new 0 0 456.029 456.029;" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                y="0px" viewBox="0 0 456.029 456.029" xml:space="preserve">
+                                <g>
                                     <g>
-                                        <g>
-                                            <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                                        <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
                    c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                        </g>
                                     </g>
+                                </g>
+                                <g>
                                     <g>
-                                        <g>
-                                            <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                                        <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
                    C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
                    c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
                    C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                        </g>
                                     </g>
+                                </g>
+                                <g>
                                     <g>
-                                        <g>
-                                            <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                                        <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
                    c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                        </g>
                                     </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                    <g>
-                                    </g>
-                                </svg>
-                            </a>
-                            <form class="form-inline">
-                                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                            <a class="order_online" href="">
-                                Order Online
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!-- end header section -->
-        <!-- slider section -->
-        <section class="slider_section ">
-            <div class="carousel slide" id="customCarousel1" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container ">
-                            <div class="row">
-                                <div class="col-md-7 col-lg-6 ">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Fast Food Restaurant
-                                        </h1>
-                                        <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                                        </p>
-                                        <div class="btn-box">
-                                            <a class="btn1" href="">
-                                                Order Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="container ">
-                            <div class="row">
-                                <div class="col-md-7 col-lg-6 ">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Fast Food Restaurant
-                                        </h1>
-                                        <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                                        </p>
-                                        <div class="btn-box">
-                                            <a class="btn1" href="">
-                                                Order Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container ">
-                            <div class="row">
-                                <div class="col-md-7 col-lg-6 ">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Fast Food Restaurant
-                                        </h1>
-                                        <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                                        </p>
-                                        <div class="btn-box">
-                                            <a class="btn1" href="">
-                                                Order Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                            </svg>
+                        </a>
+                        <form class="form-inline">
+                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <a class="order_online" href="">
+                            Order Online
+                        </a>
                     </div>
                 </div>
-                <div class="container">
-                    <ol class="carousel-indicators">
-                        <li class="active" data-target="#customCarousel1" data-slide-to="0"></li>
-                        <li data-target="#customCarousel1" data-slide-to="1"></li>
-                        <li data-target="#customCarousel1" data-slide-to="2"></li>
-                    </ol>
-                </div>
+            </nav>
+        </div>
+        <div class="info-container" style="display: {{ auth()->check() ? 'block' : 'none' }}">
+            <div class="heading-section">
+                <h1 class="user-info-heading">Welcome ({{ auth()->user()->name ?? '' }})</h1>
+                <h3 class="user-role-heading">Your role is: {{ auth()->user()?->getRoleNames()->first() ?? '' }}</h3>
             </div>
+        </div>
+        <div class="button-sections">
+            <div class="profile-link">
+                <a class="btn btn-primary mt-3" href="{{ route('profile') }}">
+                    View Profile
+                </a>
+            </div>
+            @role('admin')
+            <div class="user-section">
+                <a class="btn btn-primary mt-3" href="{{ route('admin.users') }}">
+                    View Users
+                </a>
+            </div>
+            @endrole
+            <div>
+    </header>
+            <!-- end header section -->
+            <!-- slider section -->
+            <section class="slider_section ">
+                <div class="carousel slide" id="customCarousel1" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col-md-7 col-lg-6 ">
+                                        <div class="detail-box">
+                                            <h1>
+                                                Fast Food Restaurant
+                                            </h1>
+                                            <p>
+                                                Doloremque, itaque aperiam facilis rerum, commodi, temporibus
+                                                sapiente ad
+                                                mollitia laborum quam quisquam esse error unde. Tempora ex
+                                                doloremque,
+                                                labore, sunt repellat dolore, iste magni quos nihil ducimus libero
+                                                ipsam.
+                                            </p>
+                                            <div class="btn-box">
+                                                <a class="btn1" href="">
+                                                    Order Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col-md-7 col-lg-6 ">
+                                        <div class="detail-box">
+                                            <h1>
+                                                Fast Food Restaurant
+                                            </h1>
+                                            <p>
+                                                Doloremque, itaque aperiam facilis rerum, commodi, temporibus
+                                                sapiente ad
+                                                mollitia laborum quam quisquam esse error unde. Tempora ex
+                                                doloremque,
+                                                labore, sunt repellat dolore, iste magni quos nihil ducimus libero
+                                                ipsam.
+                                            </p>
+                                            <div class="btn-box">
+                                                <a class="btn1" href="">
+                                                    Order Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col-md-7 col-lg-6 ">
+                                        <div class="detail-box">
+                                            <h1>
+                                                Fast Food Restaurant
+                                            </h1>
+                                            <p>
+                                                Doloremque, itaque aperiam facilis rerum, commodi, temporibus
+                                                sapiente ad
+                                                mollitia laborum quam quisquam esse error unde. Tempora ex
+                                                doloremque,
+                                                labore, sunt repellat dolore, iste magni quos nihil ducimus libero
+                                                ipsam.
+                                            </p>
+                                            <div class="btn-box">
+                                                <a class="btn1" href="">
+                                                    Order Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-target="#customCarousel1" data-slide-to="0"></li>
+                            <li data-target="#customCarousel1" data-slide-to="1"></li>
+                            <li data-target="#customCarousel1" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div>
 
-        </section>
-        <!-- end slider section -->
+            </section>
+            <!-- end slider section -->
+        </div>
     </div>
-
     <!-- offer section -->
 
     <section class="offer_section layout_padding-bottom">
@@ -384,7 +433,8 @@
                                         Delicious Pizza
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -465,7 +515,8 @@
                                         Delicious Burger
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -546,7 +597,8 @@
                                         Delicious Pizza
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -627,7 +679,8 @@
                                         Delicious Pasta
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -708,7 +761,8 @@
                                         French Fries
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -789,7 +843,8 @@
                                         Delicious Pizza
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -870,7 +925,8 @@
                                         Tasty Burger
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -951,7 +1007,8 @@
                                         Tasty Burger
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -1032,7 +1089,8 @@
                                         Delicious Pasta
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
+                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
+                                        magnam
                                         voluptatem repellendus sed eaque
                                     </p>
                                     <div class="options">
@@ -1133,7 +1191,8 @@
                             </h2>
                         </div>
                         <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
+                            There are many variations of passages of Lorem Ipsum available, but the majority
+                            have
                             suffered alteration
                             in some form, by injected humour, or randomised words which don't look even slightly
                             believable. If you
@@ -1228,7 +1287,8 @@
                         <div class="box">
                             <div class="detail-box">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                                 </p>
                                 <h6>
@@ -1247,7 +1307,8 @@
                         <div class="box">
                             <div class="detail-box">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                                 </p>
                                 <h6>
@@ -1258,7 +1319,7 @@
                                 </p>
                             </div>
                             <div class="img-box">
-                                <img class="box-img" src="{{ asset('images/client2.jpg')}}" alt="">
+                                <img class="box-img" src="{{ asset('images/client2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>

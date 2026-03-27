@@ -9,7 +9,7 @@
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <div class="logout-section">
-                    <button type="submit" class="btn btn-danger">
+                    <button class="btn btn-danger" type="submit">
                         Logout
                     </button>
                 </div>
@@ -17,12 +17,12 @@
         </div>
         <div class="button-sections">
             <div class="profile-link">
-                <a href="{{ route('profile') }}" class="btn btn-primary mt-3">
+                <a class="btn btn-primary mt-3" href="{{ route('profile') }}">
                     View Profile
                 </a>
             </div>
             <div class="user-section">
-                <a href="{{ route('admin.users') }}" class="btn btn-primary mt-3">
+                <a class="btn btn-primary mt-3" href="{{ route('admin.users') }}">
                     View Users
                 </a>
             </div>

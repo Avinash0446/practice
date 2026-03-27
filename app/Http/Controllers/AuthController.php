@@ -30,12 +30,12 @@ class AuthController extends Controller
             event(new UserRegistered($user));
             if ($user->hasRole('user')) {
                 auth()->login($user);
-                return redirect()->route('user.dashboard', compact('user'))->with('success', 'Registration completed successfully!');
+                return redirect()->route('app', compact('user'))->with('success', 'Registration completed successfully!');
                 ;
             }
             if ($user->hasRole('editor')) {
                 auth()->login($user);
-                return redirect()->route('editor.dashboard', compact('user'))->with('success', 'Registration completed successfully!');
+                return redirect()->route('app', compact('user'))->with('success', 'Registration completed successfully!');
                 ;
             }
         } catch (\Exception $e) {
@@ -56,6 +56,7 @@ class AuthController extends Controller
     public function profile()
     {
         $user = auth()->user();
+        // dd($user);
         return view('profile', compact('user'));
     }
 

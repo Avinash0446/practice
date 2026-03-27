@@ -26,7 +26,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
-
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     </head>
 
     <body>
@@ -49,7 +49,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script src="{{ asset('js/custom2.js') }}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"> --}}
         </script>
         @stack('scripts')
     </body>

@@ -1,0 +1,108 @@
+/* Make info container text visible */
+.info-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px 0;
+    color: #fff; /* White text for visibility */
+}
+
+.info-container .heading-section {
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.user-info-heading {
+    color: #ffbe33; /* Gold/yellow color to match your theme */
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.user-role-heading {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+}
+/* Button sections container */
+.button-sections {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Common button styles */
+.button-sections .btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* Primary button style */
+.button-sections .btn-primary {
+    background-color: #ffbe33;
+    color: #fff;
+    border: 1px solid #ffbe33;
+}
+
+.button-sections .btn-primary:hover {
+    background-color: #e69c00;
+    border-color: #e69c00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Optional: Different colors for different buttons */
+.button-sections .profile-link .btn-primary {
+    background-color: #ffbe33;
+}
+
+.button-sections .user-section .btn-primary {
+    background-color: #ffbe33;
+}
+
+/* If you want different colors for admin button */
+.button-sections .user-section .btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.button-sections .user-section .btn-primary:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .button-sections {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-sections .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+.button-sections {
+    position: relative;
+    z-index: 10;
+}
+
+.button-sections a {
+    position: relative;
+    z-index: 11;
+    pointer-events: auto;
+}

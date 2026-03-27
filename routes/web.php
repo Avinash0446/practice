@@ -17,6 +17,9 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login/attempt', [AuthController::class, 'loginAttempt'])->name('login.attempt')->middleware('check_user');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/profile',[AuthController::class, 'profile'])->name('profile')->middleware('auth');
+// Route::get('/profile', function(){
+//     dd('clicked');
+// })->named('profile');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
