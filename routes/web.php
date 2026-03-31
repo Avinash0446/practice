@@ -3,23 +3,26 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('layouts.app');
+    return view('home');
 })->name('app');
 Route::get('/registration-page',[AuthController::class, 'fetchRegisterPage'])->name('load.register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login/attempt', [AuthController::class, 'loginAttempt'])->name('login.attempt')->middleware('check_user');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-Route::get('/profile',[AuthController::class, 'profile'])->name('profile')->middleware('auth');
-// Route::get('/profile', function(){
-//     dd('clicked');
-// })->named('profile');
+
+Route::middleware('auth')->group(function(){
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile',[AuthController::class, 'profile'])->name('profile');
+    Route::get('/home',[HomeController::class, 'index'])->name('home');
+});
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

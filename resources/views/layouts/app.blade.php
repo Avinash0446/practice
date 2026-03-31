@@ -32,11 +32,11 @@
     <body>
 
         @include('layouts.header')
-        <main class="container py-4">
-            <div class="container">
-                @yield('content')
-            </div>
+        
+        <main>
+            @yield('content')
         </main>
+        
         @include('layouts.footer')
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
