@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\LoginEvent;
 use App\Events\UserRegistered;
 use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,8 +26,8 @@ class AuthController extends Controller
                 'password' => bcrypt($data['password']),
                 'status' => 'active'
             ]);
-            $user->assignRole($data['role']);
             DB::commit();
+            
             event(new UserRegistered($user));
             if ($user->hasRole('user')) {
                 auth()->login($user);
