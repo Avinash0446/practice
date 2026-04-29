@@ -16,6 +16,7 @@ class AdminController extends Controller
     public function viewUsers()
     {
         $users = User::where('email', '!=', 'admin@yopmail.com')->get();
+        dd($users);
         return view('users_list', compact('users'));
     }
 

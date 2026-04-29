@@ -24,23 +24,27 @@ Route::middleware('auth')->group(function(){
 });
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('admin/view-users',[AdminController::class, 'viewUsers'])->name('admin.users');
-    Route::get('admin/user-edit/{user}', [AdminController::class, 'editUser'])->name('admin.user.edit');
-    Route::put('admin/user-update/{user}', [AdminController::class, 'updateUser'])->name('admin.user.update');
-    Route::delete('admin/user-delete/{user}', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
-    Route::post('admin/user-toggle-status/{user}', [AdminController::class, 'toggleUserStatus'])->name('admin.user.toggle_status');
+Route::controller(AdminController::class)->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+    Route::get('admin/view-users','viewUsers')->name('admin.users');
+    Route::get('admin/user-edit/{user}', 'editUser')->name('admin.user.edit');
+    Route::put('admin/user-update/{user}', 'updateUser')->name('admin.user.update');
+    Route::delete('admin/user-delete/{user}', 'deleteUser')->name('admin.user.delete');
+    Route::post('admin/user-toggle-status/{user}', 'toggleUserStatus')->name('admin.user.toggle_status');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
 });
 
-Route::middleware(['auth', 'role:editor'])->group(function () {
-    Route::get('/editor/dashboard', [EditorController::class, 'editorDashboard'])->name('editor.dashboard');
-    Route::get('editor/create-post-form',[EditorController::class, 'createPostForm'])->name('editor.create-post-form');
-    Route::post('editor/create-post',[EditorController::class, 'createPost'])->name('editor.create-post');   
-});
+Route::controller(EditorController::class)
+    ->middleware(['auth', 'role:editor'])
+    ->group(function () {
+
+        Route::get('/editor/dashboard', 'editorDashboard')->name('editor.dashboard');
+        Route::get('/editor/create-post-form', 'createPostForm')->name('editor.create-post-form');
+        Route::post('/editor/create-post', 'createPost')->name('editor.create-post');
+
+    });
 
 Route::resource('test', testController::class);

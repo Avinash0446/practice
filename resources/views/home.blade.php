@@ -174,12 +174,17 @@
                 <li data-filter=".fries">Fries</li>
             </ul>
           <div class="row grid">
-                @foreach($posts as $post)
+                {{-- @forelse($posts as $post)
                     <x-card 
                         :image="$post->post_images" 
                         :caption="$post->caption" 
                     />
-                @endforeach
+                    @empty
+                    <div> <h1>
+                        No post yet!
+                    </h1>
+                     </div>
+                @endforelse --}}
             </div>
             <div class="btn-box">
                 <a href="">
