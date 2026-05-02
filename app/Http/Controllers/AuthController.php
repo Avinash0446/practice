@@ -24,10 +24,10 @@ class AuthController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'status' => 'active'
+                'status' => 'active',
             ]);
             DB::commit();
-            
+            $user->assignRole([$data['role']]);
             event(new UserRegistered($user));
             if ($user->hasRole('user')) {
                 auth()->login($user);

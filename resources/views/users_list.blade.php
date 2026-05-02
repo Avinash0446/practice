@@ -17,7 +17,7 @@
                 {{-- @dd($user); --}}
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->fullName }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
                             <div class="form-check form-switch">

@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +50,10 @@ Route::controller(EditorController::class)
     });
 
 Route::resource('test', testController::class);
+
+Route::get('/checkout', [PaymentController::class, 'checkout']);
+Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
+
+Route::get('/plans/create', [PlanController::class, 'create'])->name('plans.create');
+Route::post('/plans/store', [PlanController::class, 'store'])->name('plans.store');

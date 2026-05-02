@@ -40,6 +40,11 @@ return [
         'twilio_service'      => env('TWILIO_VERIFY_SERVICE_SID'),
         'twilio_sms_template' =>env('TWILIO_TEMPLATE_SID'),
         'twilio_from'         =>env('TWILIO_SMS_NUM')
-    ]
+    ],
+
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET')
+    ],
 
 ];

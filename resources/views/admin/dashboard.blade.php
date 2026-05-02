@@ -26,6 +26,11 @@
                     View Users
                 </a>
             </div>
+            <div class="user-section">
+                <a class="btn btn-warning mt-3" href="{{ route('admin.users') }}">
+                    Create Subscription Plans
+                </a>
+            </div>
             <div>
             </div>
         @endsection
