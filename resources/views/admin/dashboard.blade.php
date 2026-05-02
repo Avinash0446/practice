@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="admin-container">
         <div class="heading-section">
             <h1>Welocome ({{ auth()->user()->name }})</h1>
@@ -27,10 +28,10 @@
                 </a>
             </div>
             <div class="user-section">
-                <a class="btn btn-warning mt-3" href="{{ route('admin.users') }}">
+                <a class="btn btn-warning mt-3" href="{{ route('plans.create') }}">
                     Create Subscription Plans
                 </a>
             </div>
             <div>
             </div>
-        @endsection
+@endsection

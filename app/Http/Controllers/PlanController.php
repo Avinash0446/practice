@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Plan;
 use Illuminate\Support\Facades\DB;
-use Stripe\Stripe;
+use App\Models\Plan;
+use App\Interfaces\PaymentInterface;
+use Throwable;
 
 class PlanController extends Controller
 {
-    public function create()
+    protected PaymentInterface $payment;
+
+    public function __construct(PaymentInterface $payment)
     {
-        return view('plans.create');
+        $this->payment = $payment;
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:1',
             'interval' => 'required|in:month,year',
@@ -28,32 +31,23 @@ class PlanController extends Controller
         try {
             // 1. Create plan locally
             $plan = Plan::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-                'interval' => $request->interval,
+                'name' => $validated['name'],
+                'description' => $validated['description'] ?? null,
+                'price' => $validated['price'],
+                'interval' => $validated['interval'],
                 'is_active' => $request->is_active ?? 1,
             ]);
 
-            // 2. Connect to Stripe
-            Stripe::setApiKey(config('services.stripe.secret'));
+            // 2. Stripe calls via service
+            $product = $this->payment->createProduct($plan->name);
 
-            // 3. Create product
-            $product = \Stripe\Product::create([
-                'name' => $plan->name,
-            ]);
+            $price = $this->payment->createPrice(
+                $plan->price,
+                $plan->interval,
+                $product->id
+            );
 
-            // 4. Create price
-            $price = \Stripe\Price::create([
-                'unit_amount' => $plan->price * 100,
-                'currency' => 'inr',
-                'recurring' => [
-                    'interval' => $plan->interval,
-                ],
-                'product' => $product->id,
-            ]);
-
-            // 5. Update plan with Stripe IDs
+            // 3. Update Stripe IDs
             $plan->update([
                 'stripe_product_id' => $product->id,
                 'stripe_price_id' => $price->id,
@@ -61,13 +55,18 @@ class PlanController extends Controller
 
             DB::commit();
 
-        } catch (\Exception $e) {
+            return redirect()
+                ->route('plans.create')
+                ->with('success', 'Plan created successfully!');
+
+        } catch (Throwable $e) {
             DB::rollBack();
 
-            return back()->with('error', $e->getMessage());
-        }
+            report($e); // better than exposing raw error
 
-        return redirect()->route('plans.create')
-            ->with('success', 'Plan created successfully!');
+            return back()
+                ->withInput()
+                ->with('error', 'Something went wrong while creating the plan.');
+        }
     }
 }

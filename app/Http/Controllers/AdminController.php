@@ -13,10 +13,13 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function viewUsers()
+    public function viewUsers(Request $request)
     {
-        $users = User::where('email', '!=', 'admin@yopmail.com')->get();
+        $users = User::where('email', '!=', 'admin@yopmail.com')->paginate(10);
         // dd($users);
+        if ($request->ajax()) {
+            return view('partials.user_table', compact('users'))->render();
+        }
         return view('users_list', compact('users'));
     }
 

@@ -6,6 +6,7 @@ use App\Interfaces\PaymentInterface;
 use App\Models\User;
 use App\Observers\UserObserver;
 use App\Services\StripePaymentService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\postsInterface;
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // User::observe(UserObserver::class);
+           Paginator::useBootstrap();
     }
 }
