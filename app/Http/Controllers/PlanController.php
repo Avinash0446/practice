@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Plan;
 use App\Interfaces\PaymentInterface;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class PlanController extends Controller
@@ -17,6 +18,11 @@ class PlanController extends Controller
         $this->payment = $payment;
     }
 
+    public function create(){
+        Log::info("reached to plancontroller");
+        return view('admin.create-plans');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -25,6 +31,7 @@ class PlanController extends Controller
             'interval' => 'required|in:month,year',
             'description' => 'nullable|string',
         ]);
+        Log::info('this is all Data',["all form Data" => $request->all()]);
 
         DB::beginTransaction();
 
@@ -40,6 +47,7 @@ class PlanController extends Controller
 
             // 2. Stripe calls via service
             $product = $this->payment->createProduct($plan->name);
+            Log::info("this is product------------>",["this is the product Id: "=>$product]);
 
             $price = $this->payment->createPrice(
                 $plan->price,

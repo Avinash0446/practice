@@ -41,14 +41,19 @@ class StripePaymentService implements PaymentInterface
     public function createPrice($amount, $interval, $productId)
     {
         try {
-            return Price::create([
+            Log::info("this is the info first",["AMount" => $amount , "interval" => $interval, "productId" => $productId]);
+            $dataset = Price::create([
                 'unit_amount' => $amount * 100, // convert to paisa/cents
                 'currency' => 'inr',
                 'recurring' => [
-                    'interval' => $interval, // month/year
+                    'interval' => $interval,
+                    'interval_count' => 3,
                 ],
+                'trial_period_days' => 7,
                 'product' => $productId,
             ]);
+            Log::info("this is the response", ["Dataset" => $dataset]);
+            return $dataset;
         } catch (\Exception $e) {
             Log::error('Stripe Price Error: ' . $e->getMessage());
             throw $e;

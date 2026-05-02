@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->integer('price');
             $table->string('currency')->default('inr');
-            $table->enum('interval', ['months', 'year']);
+            $table->enum('interval', ['month', 'year']);
             $table->string('stripe_product_id')->nullable();
             $table->string('stripe_price_id')->nullable();
             $table->boolean('is_active')->default(true);

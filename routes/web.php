@@ -57,3 +57,5 @@ Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 
 Route::get('/plans/create', [PlanController::class, 'create'])->name('plans.create');
 Route::post('/plans/store', [PlanController::class, 'store'])->name('plans.store');
+Route::post('/plans/subscribe/{id}', [PlanController::class, 'subscribe'])
+    ->name('plans.subscribe');

@@ -125,9 +125,6 @@ body {
         <button type="submit" class="btn-submit">
             Create Plan
         </button>
-
     </form>
-
 </div>
-
 @endsection
