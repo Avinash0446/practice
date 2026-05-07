@@ -50,22 +50,29 @@ class User extends Authenticatable
         ];
     }
 
-    public function posts(){
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function likes(){
+    public function likes()
+    {
         return $this->hasMany(Likes::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comments::class);
     }
 
     protected function fullName(): Attribute
     {
         return Attribute::make(
-            get: fn () => ucfirst($this->name),
+            get: fn() => ucfirst($this->name),
         );
     }
 

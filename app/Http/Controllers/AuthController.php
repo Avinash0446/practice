@@ -57,8 +57,10 @@ class AuthController extends Controller
     public function profile()
     {
         $user = auth()->user();
+        $profile = $user->profile;
+        // dd($user, $profile);
         // dd($user);
-        return view('profile', compact('user'));
+        return view('profile', compact('user','profile'));
     }
 
     public function login()
